@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique Aboudou</title>
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+header {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+.product {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#cart {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+#whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #222;
+    color: white;
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🛒 Boutique Aboudou</h1>
+    <p>Spécialiste des pomades et crèmes Nivea</p>
+    <p>Contact WhatsApp : 31724154</p>
+</header>
+
+<div id="cart">
+    <h3>Panier</h3>
+    <ul id="cart-items"></ul>
+</div>
+
+<div class="container">
+
+    <div class="product">
+        <img src="https://via.placeholder.com/200" alt="Nivea crème">
+        <h3>Crème Nivea Soft</h3>
+        <p>300 MRU</p>
+        <button onclick="addToCart('Crème Nivea Soft')">Acheter</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/200" alt="Nivea lotion">
+        <h3>Lotion Nivea Body</h3>
+        <p>500 MRU</p>
+        <button onclick="addToCart('Lotion Nivea Body')">Acheter</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/200" alt="Nivea crème">
+        <h3>Crème Nivea Classique</h3>
+        <p>250 MRU</p>
+        <button onclick="addToCart('Crème Nivea Classique')">Acheter</button>
+    </div>
+
+</div>
+
+<div id="whatsapp" onclick="sendWhatsApp()">
+    Commander sur WhatsApp
+</div>
+
+<footer>
+    <p>© 2026 Boutique Aboudou - Produits Nivea originaux</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(product) {
+    cart.push(product);
+    const li = document.createElement('li');
+    li.textContent = product;
+    document.getElementById('cart-items').appendChild(li);
+}
+
+function sendWhatsApp() {
+    if(cart.length === 0) {
+        alert("Ton panier est vide");
+        return;
+    }
+
+    let message = "Bonjour, je veux commander : %0A";
+    cart.forEach(item => {
+        message += "- " + item + "%0A";
+    });
+
+    let phone = "22231724154";
+
+    let url = "https://wa.me/" + phone + "?text=" + message;
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
